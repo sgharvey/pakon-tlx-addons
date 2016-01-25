@@ -5,6 +5,8 @@ These scripts will NOT work if AutoIt v3 is not installed on your XP VM / PC.
 
 Download AutoIt v3 here: https://www.autoitscript.com/site/autoit/downloads/
 
+Get updates for the master branch on Twitter: https://twitter.com/PakonTLXAddons
+
 TLX_Reindex
 ===========
 
