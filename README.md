@@ -19,6 +19,7 @@ Activates the BnW and Positive radio buttons in the Scan Settings dialog. The Po
 selects a different frame detection algorithm, making it possible to scan E-6 slide / positive film without phantom jamming.
 This setting is normally only active when running TLXClientDemo with an F-235 or F-335 attached to the PC or VM. Files must 
 be saved as "raw" (negative), as Kodak's color correction algorithm does strange things (at least when used with an F-135).
+Saving as planar (16-bit) is not necessary, but can be helpful.
 
 The BnW radio button may result in a slightly different final contrast curve being applied, but it is not yet certain what the exact
 difference between the C41 BnW radio button and the BnW radio button is when an F-135 (plus or non-plus) is attached.
