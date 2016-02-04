@@ -31,3 +31,13 @@ Notes
 
 If you are running XP in a VM, you must run these scripts from inside of your XP VM! You cannot run them from the host OS and
 expect them to work!
+
+Donations
+---------
+
+If you'd like to help me justify spending even more time on these things,
+you can:
+
+Flattr me: flattr.com/profile/sgharvey
+
+Buy me a beer via Paypal: KephnosAnagennao@gmail.com
