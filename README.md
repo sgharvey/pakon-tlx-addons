@@ -32,28 +32,28 @@ TLX_Controller
 Runs silently in the System Tray, providing you with shortcut keys for the sliders
 in the Color Adjustment dialog.
 
-===           ========
-Key           Function
----           --------
-Shift + Esc   Terminates the script
-Right Arrow   Navigates to the next image
-Left Arrow    Navigates to the previous image
-z             Rotates the current image anti-clockwise
-x             Rotates the current image clockwise
-Down Arrow    Make the current image Selected
-Up Arrow      Make the current image Not Selected
-Insert        Add red (subtract cyan)
-Delete        Subtract red (add cyan)
-Home          Add green (subtract magenta)
-End           Subtract green (add magenta)
-Page Up       Add blue (subtract yellow)
-Page Down     Subtract blue (add yellow)
-u             Increase brightness
-j             Decrease brightness
-i             Increase contrast
-k             Decrease contrast
-o             Increase sharpness
-l             Decrease sharpness
+
+| Key         | Function                                 |
+| ----------- | ---------------------------------------- |
+| Shift + Esc | Terminates the script                    |
+| Right Arrow | Navigates to the next image              |
+| Left Arrow  | Navigates to the previous image          |
+| z           | Rotates the current image anti-clockwise |
+| x           | Rotates the current image clockwise      |
+| Down Arrow  | Make the current image Selected          |
+| Up Arrow    | Make the current image Not Selected      |
+| Insert      | Add red (subtract cyan)                  |
+| Delete      | Subtract red (add cyan)                  |
+| Home        | Add green (subtract magenta)             |
+| End         | Subtract green (add magenta)             |
+| Page Up     | Add blue (subtract yellow)               |
+| Page Down   | Subtract blue (add yellow)               |
+| u           | Increase brightness                      |
+| j           | Decrease brightness                      |
+| i           | Increase contrast                        |
+| k           | Decrease contrast                        |
+| o           | Increase sharpness                       |
+| l           | Decrease sharpness                       |
 
 Do not start this script until a roll has finished scanning, and has been moved from 
 the scan group to the save group (the Color button is clickable).
