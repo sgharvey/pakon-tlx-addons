@@ -1,1 +1,2 @@
-*.au3 text
+*.au3 text eol=crlf
+
