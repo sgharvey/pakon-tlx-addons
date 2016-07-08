@@ -83,6 +83,4 @@ Donations
 If you'd like to help me justify spending even more time on these things,
 you can:
 
-Flattr me: flattr.com/profile/sgharvey
-
 Buy me a beer via Paypal: KephnosAnagennao@gmail.com
