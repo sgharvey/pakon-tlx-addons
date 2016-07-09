@@ -29,9 +29,9 @@ Const $hotkeySharpMinus     = "l"       ; Plain lowercase l ("ell" not number on
 
 ;; Change the size of adjustments here.
 ;; The range of each slider is from 0 to 2000.
-Const $iAdjLg = 100 ; How much is a Large slider adjustment?
-Const $iAdjMd =  50 ; How much is a Medium slider adjustment?
-Const $iAdjSm =  10 ; How much is a Small slider adjustment?
+Const $iAdjLg = 100 ; How much a button adjusts a slider by default.
+Const $iAdjMd =  50 ; How much a button adjusts a slider by when holding down Shift.
+Const $iAdjSm =  10 ; How much a button adjusts a slider by when holding down Ctrl.
 
 Const $titleTLX = "TLXClientDemo"
 Const $idRotateComboList = 1020

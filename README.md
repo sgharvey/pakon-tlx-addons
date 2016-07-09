@@ -32,6 +32,10 @@ TLX_Controller
 Runs silently in the System Tray, providing you with shortcut keys for the sliders
 in the Color Adjustment dialog.
 
+The Color Adjustment buttons (red, green, brightness, etc) will adjust their 
+respective sliders by 100 units. Shift will modify that to 50 units, and Ctrl 
+will modify that to 10 units. These values can be changed by altering the $iAdjLg,
+$iAdjMd, and $iAdjSm values respectively.
 
 | Key         | Function                                 |
 | ----------- | ---------------------------------------- |
