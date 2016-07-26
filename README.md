@@ -14,17 +14,18 @@ A script for reindexing all images in the current roll. Useful for scanning film
 or if the DX reader in your Pakon is dirty or broken. Edit the variable SaveDest to change the location that your image
 files will be saved to. Default is C:\Temp
 
-TLX_ScanPositive
+TLX_ScanEnable
 ================
 
-Activates the BnW and Positive radio buttons in the Scan Settings dialog. The Positive radio button 
-selects a different frame detection algorithm, making it possible to scan E-6 slide / positive film without phantom jamming.
-This setting is normally only active when running TLXClientDemo with an F-235 or F-335 attached to the PC or VM. Files must 
-be saved as "raw" (negative), as Kodak's color correction algorithm does strange things (at least when used with an F-135).
-Saving as planar (16-bit) is not necessary, but can be helpful.
+Activates the BnW and Positive radio buttons, as well as the 16-Base 
+resolution button in the Scan Settings dialog. 
+
+The Positive radio button selects a different frame detection algorithm, making it possible to scan E-6 slide / positive film without phantom jamming.  This setting is normally only active when running TLXClientDemo with an F-235 or F-335 attached to the PC or VM. Files must be saved as "raw" (negative), as Kodak's color correction algorithm does strange things (at least when used with an F-135).  Saving as planar (16-bit) is not necessary, but can be helpful.
 
 The BnW radio button may result in a slightly different final contrast curve being applied, but it is not yet certain what the exact
 difference between the C41 BnW radio button and the BnW radio button is when an F-135 (plus or non-plus) is attached.
+
+The 16-Base button is not available if a F-135 NonPlus unit is attached. With that button enabled, output files will be 6 MP instead of 3 MP. There is debate as to how much more spatial information is in these files, but many are quite happy with the results.
 
 TLX_Controller
 ==============
