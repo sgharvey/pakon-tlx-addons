@@ -1,12 +1,6 @@
+#include <MsgBoxConstants.au3>
 #Include <GuiSlider.au3>
 
-;; Change keybindings here.
-;; + is Shift, ^ is Control, special keys must be enclosed in {curly braces}.
-;; 
-;; Look up the Send() function in AutoIt help for a list of special keys.
-;; 
-;; The NumPad was not used by default since it does not behave consistently with
-;; modifier keys (Shift, Control).
 Const $hotkeyTerminate      = "+{ESC}"  ; Shift + Escape
 Const $hotkeyNextImage      = "{RIGHT}" ; Right arrow
 Const $hotkeyPrevImage      = "{LEFT}"  ; Left arrow
@@ -27,11 +21,11 @@ Const $hotkeyContrastMinus  = "k"       ; Plain lowercase k
 Const $hotkeySharpPlus      = "o"       ; Plain lowercase o ("oh" not number zero)
 Const $hotkeySharpMinus     = "l"       ; Plain lowercase l ("ell" not number one)
 
-;; Change the size of adjustments here.
-;; The range of each slider is from 0 to 2000.
-Const $iAdjLg = 100 ; How much a button adjusts a slider by default.
-Const $iAdjMd =  50 ; How much a button adjusts a slider by when holding down Shift.
-Const $iAdjSm =  10 ; How much a button adjusts a slider by when holding down Ctrl.
+;; Change adjustment sizes here.
+;; The ranges of these slider is 2000 units.
+Const $iAdjLg = 100 ; How much is a Large slider adjustment?
+Const $iAdjMd =  50 ; How much is a Medium slider adjustment?
+Const $iAdjSm =  10 ; How much is a Small slider adjustment?
 
 Const $titleTLX = "TLXClientDemo"
 Const $idRotateComboList = 1020
@@ -55,6 +49,7 @@ Const $idColorContrastSlider = 1082
 Const $instColorContrastSlider = 5
 Const $idColorSharpSlider = 1083
 Const $instColorSharpSlider = 6
+Const $idColorOkButton = 1
 
 Const $idPrevButton = 1007
 Const $idNextButton = 1006
@@ -62,6 +57,20 @@ Const $idNextButton = 1006
 Const $idPicNotSelectedRadio = 1060
 Const $idPicSelectedRadio    = 1061
 Const $idPicHiddenRadio      = 1062
+
+; Get necessary handles and ranges for adjustment sliders.
+$hColorRedSlider = 0
+$aColorRedRange = 0
+$hColorGreenSlider = 0
+$aColorGreenRange = 0
+$hColorBlueSlider = 0
+$aColorBlueRange = 0
+$hColorBrightSlider = 0
+$aColorBrightRange = 0
+$hColorContrastSlider = 0
+$aColorContrastRange = 0
+$hColorSharpSlider = 0
+$aColorSharpRange = 0
 
 HotKeySet($hotkeyTerminate, "Terminate") ; Press this key to terminate the controller.
 Func Terminate()
@@ -74,11 +83,15 @@ EndFunc
 HotKeySet($hotkeyNextImage, "NextImage")
 Func NextImage()
    ControlClick ($titleTLX, "", $idNextButton, "primary")
+   closeAdjustmentWindow()
+   openAdjustmentWindow()
 EndFunc
 
 HotKeySet($hotkeyPrevImage, "PrevImage")
 Func PrevImage()
    ControlClick ($titleTLX, "", $idPrevButton, "primary")
+   closeAdjustmentWindow()
+   openAdjustmentWindow()
 EndFunc
 
 ; Rotation HotKeys.
@@ -271,34 +284,46 @@ Func SharpMinusSmall()
    SetSliderPosRel($hColorSharpSlider, $iAdjSm * -1, $aColorSharpRange)
 EndFunc
 
+Func openAdjustmentWindow()
+   If Not WinExists($titleColor) Then
+	  ; Make TLX window active.
+	  WinActivate($titleTLX)
+	  ; Open the Color Adjustment window.
+	  ControlClick($titleTLX, "", $idColorButton, "primary")
+   Else
+	  WinActivate($titleColor)
+   EndIf
+   WinWaitActive($titleColor)
+   ; Move the Color Adjustment window into the upper left corner.
+   $posColor = WinGetPos($titleColor)
+   If $posColor[0] <> 0 Or $posColor[1] <> 0 Then
+	  WinMove($titleColor, "", 0, 0)
+   EndIf
+   ; Get necessary handles and ranges for adjustment sliders.
+   $hColorRedSlider = GetSliderHandle($titleColor, $instColorRedSlider)
+   $aColorRedRange = GetSliderRange($hColorRedSlider)
+   $hColorGreenSlider = GetSliderHandle($titleColor, $instColorGreenSlider)
+   $aColorGreenRange = GetSliderRange($hColorGreenSlider)
+   $hColorBlueSlider = GetSliderHandle($titleColor, $instColorBlueSlider)
+   $aColorBlueRange = GetSliderRange($hColorBlueSlider)
+   $hColorBrightSlider = GetSliderHandle($titleColor, $instColorBrightSlider)
+   $aColorBrightRange = GetSliderRange($hColorBrightSlider)
+   $hColorContrastSlider = GetSliderHandle($titleColor, $instColorContrastSlider)
+   $aColorContrastRange = GetSliderRange($hColorContrastSlider)
+   $hColorSharpSlider = GetSliderHandle($titleColor, $instColorSharpSlider)
+   $aColorSharpRange = GetSliderRange($hColorSharpSlider)
+EndFunc
 
-If Not WinExists($titleColor) Then
-   ; Make TLX window active.
-   WinActivate($titleTLX)
-   ; Open the Color Adjustment window.
-   ControlClick($titleTLX, "", $idColorButton, "primary")
-Else
+Func closeAdjustmentWindow()
+   If Not WinExists($titleColor) Then
+	  Return
+   EndIf
    WinActivate($titleColor)
-EndIf
-WinWaitActive($titleColor)
-; Move the Color Adjustment window into the upper left corner.
-$posColor = WinGetPos($titleColor)
-If $posColor[0] <> 0 Or $posColor[1] <> 0 Then
-   WinMove($titleColor, "", 0, 0)
-EndIf
-; Get necessary handles and ranges for adjustment sliders.
-$hColorRedSlider = GetSliderHandle($titleColor, $instColorRedSlider)
-$aColorRedRange = GetSliderRange($hColorRedSlider)
-$hColorGreenSlider = GetSliderHandle($titleColor, $instColorGreenSlider)
-$aColorGreenRange = GetSliderRange($hColorGreenSlider)
-$hColorBlueSlider = GetSliderHandle($titleColor, $instColorBlueSlider)
-$aColorBlueRange = GetSliderRange($hColorBlueSlider)
-$hColorBrightSlider = GetSliderHandle($titleColor, $instColorBrightSlider)
-$aColorBrightRange = GetSliderRange($hColorBrightSlider)
-$hColorContrastSlider = GetSliderHandle($titleColor, $instColorContrastSlider)
-$aColorContrastRange = GetSliderRange($hColorContrastSlider)
-$hColorSharpSlider = GetSliderHandle($titleColor, $instColorSharpSlider)
-$aColorSharpRange = GetSliderRange($hColorSharpSlider)
+   ControlClick($titleColor, "OK", $idColorOkButton, "primary")
+EndFunc
+
+openAdjustmentWindow()
+
 
 ; main() where all the action happens until termination HotKey is pressed.
 While 1
